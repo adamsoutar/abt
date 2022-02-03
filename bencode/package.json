@@ -1,9 +1,11 @@
 {
-  "name": "@abt/bencode",
-  "version": "0.1.0",
+  "name": "abt-bencode",
+  "version": "0.1.1",
   "description": "A bencode parser",
   "main": "index.js",
   "type": "module",
+  "repository": "adamsoutar/abt",
+  "homepage": "https://github.com/adamsoutar/abt/tree/master/bencode",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
