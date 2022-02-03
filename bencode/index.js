@@ -26,6 +26,7 @@ function isNumber(char) {
 
 function readNumber(charStream) {
   let numStr = ''
+  let leading0 = false
 
   while (charStream.peek !== 'e') {
     if (charStream.eof) {
@@ -38,6 +39,15 @@ function readNumber(charStream) {
     const char = charStream.read()
     if (!(isNumber(char) || char === '-')) {
       charStream.croak('Integer contained a non-number character')
+    }
+    if (leading0) {
+      charStream.croak('Encountered a leading zero')
+    }
+    if (char === '0' && (
+      numStr === '' ||
+      numStr === '-'
+    )) {
+      leading0 = true
     }
     numStr += char
   }

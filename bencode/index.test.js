@@ -14,6 +14,16 @@ describe('Bencode', () => {
       expect(() => parseBencode('i-0e')).toThrow()
     })
 
+    it('should reject leading zeros', () => {
+      expect(parseBencode('i0e')).toBe(0)
+      expect(parseBencode('i102e')).toBe(102)
+      expect(parseBencode('i10002e')).toBe(10002)
+      expect(() => parseBencode('i01e')).toThrow()
+      expect(() => parseBencode('i-01e')).toThrow()
+      expect(() => parseBencode('i00e')).toThrow()
+      expect(() => parseBencode('i-00e')).toThrow()
+    })
+
     it('should reject unterminated integers', () => {
       expect(() => parseBencode('i123')).toThrow()
     })
