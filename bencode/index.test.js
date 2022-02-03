@@ -97,6 +97,10 @@ describe('Bencode', () => {
     it('should reject non-alphabetically-sorted keys', () => {
       expect(() => parseBencode('d3:fooi123e3:bari456ee')).toThrow()
     })
+
+    it('should reject duplicate keys', () => {
+      expect(() => parseBencode('d3:fooi123e3:fooi456ee')).toThrow()
+    })
   })
 
   describe('Nesting', () => {

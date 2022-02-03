@@ -107,6 +107,7 @@ function readList(charStream) {
 
 function readDictionary(charStream) {
   const output = {}
+  let previousKey
 
   while (charStream.peek !== 'e') {
     if (charStream.eof) {
@@ -117,6 +118,13 @@ function readDictionary(charStream) {
       charStream.croak('Encountered a non-string dictionary key')
     }
     const key = readString(charStream, strStart)
+    if (previousKey && key < previousKey) {
+      charStream.croak('Enountered a non-sorted dictionary key')
+    }
+    if (previousKey && key === previousKey) {
+      charStream.croak('Encountered a duplicate dictionary key')
+    }
+    previousKey = key
     const value = readBencodeAtom(charStream)
     output[key] = value
   }
