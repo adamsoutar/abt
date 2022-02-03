@@ -1,7 +1,7 @@
 # @abt/bencode
 
 Parses [bencode](https://en.wikipedia.org/wiki/Bencode), sort of like
-the JSON of torrents. It's used in `.torrent` files.
+the JSON of the BitTorrent protocol. It's used in `.torrent` files.
 
  > bencode in, POJOs out
 
